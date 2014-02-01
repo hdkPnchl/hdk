@@ -1,7 +1,9 @@
-$(document).ready(function() 
+
+/* Tree specific JS -http://jsfiddle.net/jhfrench/GpdgF/*/
+
+$(function () 
 {
     $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
-    
     $('.tree li.parent_li > span').on('click', function (e) 
     {
         var children = $(this).parent('li.parent_li').find(' > ul > li');
@@ -17,7 +19,85 @@ $(document).ready(function()
         }
         e.stopPropagation();
     });
+});
+
+$(document).off('.data-api');
+
+$(document).ready(function() 
+{
+    function removeItem(item)
+    {
+    	$(item).parent().parent().remove();
+    }
     
+    function addItem(itemVal)
+    {
+		//remove
+		var removeI = $('<i></i>');
+		removeI.addClass("glyphicon");
+		removeI.addClass("glyphicon-remove");
+	    $(removeI).click(function() 
+	    {
+	    	removeItem(removeI);
+		});
+	    //add
+		var createI = $('<i></i>');
+		createI.addClass("glyphicon");
+		createI.addClass("glyphicon-plus");
+	    $(createI).click(function() 
+	    {
+			$('#createItemModal').modal('toggle');
+		});
+		//label
+		var actionlabel = $('<label></label>');
+		actionlabel.append(removeI);		
+		actionlabel.append(" ");
+		actionlabel.append(createI);
+
+		
+	    //span
+		var itemSpan = $('<span></span>');
+		itemSpan.text(itemVal);
+
+		//ul
+		var childItemHolder = $('<ul></ul>');
+
+    	//li
+		var itemli = $('<li></li>');
+		itemli.append(itemSpan);
+		itemli.append(" ");
+		itemli.append(actionlabel);
+		itemli.append(childItemHolder);
+		
+		return itemli;
+	}	
+    
+    $("#addItemBtn").click(function() 
+    {
+		var itemVal = $("#itemVal").val();
+		$("#itemVal").val("");
+		
+		var newItem = addItem(itemVal);
+		
+		$("#itemHolder").append(newItem);
+    });    
+    
+    var currentParent=null;
+    
+    $("#modalAddItemBtn").click(function() 
+    {
+		var modalItemVal = $("#modalItemVal").val();
+		$("#modalItemVal").val("");
+		
+		var modalNewItem = addItem(modalItemVal);
+		
+		var ul = $(currentParent).parent().parent().find("ul")[0];
+
+		
+		$(ul).append(modalNewItem);
+		
+		$('#createItemModal').modal('toggle');
+    });    
     
     $(".glyphicon-remove").click(function() 
     {
@@ -26,68 +106,7 @@ $(document).ready(function()
     
     $(".glyphicon-plus").click(function() 
     {
-		var newItem = addItem("new item");
-		
-		var ul = $(this).parent().find("ul")[0];
-		
-		$(ul).append(newItem);
-	});
-    
-    function removeItem(item)
-    {
-    	$(item).parent().remove();
-    }
-    
-    function addItem(itemVal)
-    {
-		var itemli = $('<li></li>');
-		
-		var removeI = $('<i></i>');
-		removeI.addClass("glyphicon");
-		removeI.addClass("glyphicon-remove");
-	    $(removeI).click(function() 
-	    {
-	    	removeItem(removeI);
-		});
-		
-		var createI = $('<i></i>');
-		createI.addClass("glyphicon");
-		createI.addClass("glyphicon-plus");
-	    $(createI).click(function() 
-	    {
-	    	alert("clicked!");
-			var newItem = addItem("new item");
-			
-			var ul = $(createI).parent().find("ul")[0];
-			
-			$(ul).append(newItem);			
-		});
-	    
-		var itemSpan = $('<span></span>');
-		itemSpan.text(itemVal);
-
-		var childItemHolder = $('<ul></ul>');
-
-		itemli.append(itemSpan);
-		itemli.append(" ");
-		itemli.append(removeI);
-		itemli.append(" ");
-		itemli.append(createI);
-		itemli.append(childItemHolder);
-		
-		return itemli;
-	}
-    
-    $("#addItemBtn").click(function() 
-    {
-		var itemVal = $("#addItemTxt").val();
-		$("#addItemTxt").val("");
-		
-		var newItem = addItem(itemVal);
-		
-		$("#itemList").append(newItem);
-    });
-    
+		$('#createItemModal').modal('toggle');
+		currentParent = this;
+	});    
 });
-
-//http://jsfiddle.net/jhfrench/GpdgF/

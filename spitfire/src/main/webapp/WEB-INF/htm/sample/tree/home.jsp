@@ -9,7 +9,6 @@
 		%>
 		
 		<link rel="stylesheet" href="<%=contextPath%>/resources/util/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="<%=contextPath%>/resources/util/bootstrap/css/bootstrap-theme.css">
 		<link rel="stylesheet" href="<%=contextPath%>/resources/core/css/tree.css">
 		
 		<script type="text/javascript" src="<%=contextPath%>/resources/util/jquery/jquery-2.1.0.js"></script>
@@ -21,75 +20,115 @@
 		<div class="container">
 			<br>
 			<br>
-	  		<div class="row">
+	  		<div id="createItem" class="row">
 				<div class="col-lg-6">
 			    	<div class="input-group">
-			      		<input id="addItemTxt" type="text" class="form-control">
+			      		<input id="itemVal" type="text" class="form-control">
 			      		<span class="input-group-btn">
 			        		<button id="addItemBtn"  class="btn btn-default" type="button">Add Item</button>
 			      		</span>
 			    	</div><!-- /input-group -->
 			  	</div><!-- /.col-lg-6 -->
 	  		</div>
+			<!-- Modal -->
+			<div class="modal fade" id="createItemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			        <h4 class="modal-title" id="">Add Item</h4>
+			      </div>
+			      <div class="modal-body">
+			      		<input id="modalItemVal" type="text" class="form-control">
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			        <button id="modalAddItemBtn" type="button" class="btn btn-primary">Save changes</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>	  		
+			
 	  		<br>
+	  				
 			<div class="tree well">
-			    <ul id="itemList">
+			    <ul id="itemHolder">
 			        <li>
-			            <span>Item.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			            <span> Item</span>
+			            <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			            <ul>
 			                <li>
-			                	<span>Item.1.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			                	<span> Item</span> 
+			                	<label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			                    <ul>
 			                        <li>
-				                        <span>Item.1.1.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                        <span> Item</span> 
+				                        <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			                        </li>
 			                    </ul>
 			                </li>
 			                <li>
-			                	<span>Item.1.2</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			                	<span> Item</span> 
+			                	<label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			                    <ul>
 			                        <li>
-				                        <span>Item.1.2.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                        <span> Item</span> 
+				                        <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+				                        <ul></ul>
 			                        </li>
 			                        <li>
-			                        	<span>Item.1.2.2</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			                        	<span> Item</span> 
+			                        	<label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			                            <ul>
 			                                <li>
-				                                <span>Item.1.2.2.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                                <span> Item</span> 
+				                                <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 					                            <ul>
 					                                <li>
-						                                <span>Item.1.2.2.1.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+						                                <span> Item</span> 
+						                                <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+						                                <ul></ul>
 					                                </li>
 					                                <li>
-						                                <span>Item.1.2.2.1.2</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+						                                <span> Item</span> 
+						                                <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+						                                <ul></ul>
 					                                </li>
 					                             </ul>
 			                                </li>
 			                                <li>
-				                                <span>Item.1.2.2.2</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                                <span> Item</span> 
+				                                <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+				                                <ul></ul>
 			                                </li>
 			                                <li>
-				                                <span>Item.1.2.2.3</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                                <span> Item</span> 
+				                                <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+				                                <ul></ul>
 			                                </li>
 			                            </ul>
 			                        </li>
 			                        <li>
-				                        <span>Item.1.2.3</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+				                        <span> Item</span> 
+				                        <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
+				                        <ul></ul>
 			                        </li>
 			                    </ul>
 			                </li>
 			            </ul>
 			        </li>
 			        <li>
-			            <span>Item.2</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			            <span> Item</span> 
+			            <label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 			            <ul>
 			                <li>
-			                	<span>Item.2.1</span> &nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i class="glyphicon glyphicon-plus"></i>
+			                	<span> Item</span> 
+			                	<label>&nbsp<i class="glyphicon glyphicon-remove"></i>&nbsp<i id="addOne" class="glyphicon glyphicon-plus" ></i></label>
 					        </li>
 					    </ul>
 			        </li>
 			    </ul>
-			</div>		
+			</div>
 		</div>
 	</body>
 </html>
